@@ -24,12 +24,12 @@ class Graph extends Component<IProps, {}> {
         const elem = document.getElementsByTagName('perspective-viewer')[0] as unknown as PerspectiveViewerElement;
 
         const schema = {
-            price_abc: 'float',
-            price_def: 'float',
-            ratio: 'float',
-            timestamp: 'date',
+            price_stock1: 'float',
+            price_stock2: 'float',
             upper_bound: 'float',
             lower_bound: 'float',
+            ratio: 'float',
+            timestamp: 'date',
             trigger_alert: 'float'
         };
 
@@ -43,8 +43,8 @@ class Graph extends Component<IProps, {}> {
             elem.setAttribute('row-pivots', '["timestamp"]');
             elem.setAttribute('columns', '["ratio", "lower_bound", "upper_bound", "trigger_alert"]');
             elem.setAttribute('aggregates', JSON.stringify({
-                price_abc: 'avg',
-                price_def: 'avg',
+                price_stock1: 'avg',
+                price_stock2: 'avg',
                 ratio: 'avg',
                 timestamp: 'distinct count',
                 upper_bound: 'avg',

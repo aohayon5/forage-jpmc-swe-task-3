@@ -1,8 +1,8 @@
 import {ServerRespond} from './DataStreamer';
 
 export interface Row {
-    price_abc: number,
-    price_def: number,
+    price_stock1: number,
+    price_stock2: number,
     ratio: number,
     timestamp: Date,
     upper_bound: number,
@@ -11,16 +11,16 @@ export interface Row {
 }
 
 
-export class DataManipulator {
+export class DataManipulator { //why changes premade...
     static generateRow(serverRespond: ServerRespond[]): Row {
-        const priceABC = (serverRespond[0].top_ask.price + serverRespond[0].top_bid.price) / 2;
-        const priceDEF = (serverRespond[1].top_ask.price + serverRespond[1].top_bid.price) / 2;
-        const ratio = priceABC / priceDEF;
+        const pricestock1 = (serverRespond[0].top_ask.price + serverRespond[0].top_bid.price) / 2;
+        const pricestock2 = (serverRespond[1].top_ask.price + serverRespond[1].top_bid.price) / 2;
+        const ratio = pricestock1 / pricestock2;
         const upperBound = 1 + 0.05;
         const lowerBound = 1 - 0.05;
         return {
-            price_abc: priceABC,
-            price_def: priceDEF,
+            price_stock1: pricestock1,
+            price_stock2: pricestock2,
             ratio,
             timestamp: serverRespond[0].timestamp > serverRespond[1].timestamp ?
                 serverRespond[0].timestamp : serverRespond[1].timestamp,
